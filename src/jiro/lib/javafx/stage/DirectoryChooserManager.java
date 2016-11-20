@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * DirectoryChooserで開いたディレクトリのパスを保持するクラス。
  * @author jiro
- * @version 1.0
+ * @version 1.1
  */
 public class DirectoryChooserManager {
   private File currentDirectory;
@@ -19,7 +19,7 @@ public class DirectoryChooserManager {
    * カレントディレクトリをDirectoryChooserの初期ディレクトリに設定するコンストラクタ。
    */
   public DirectoryChooserManager() {
-    this(null);
+    this(".");
   }
 
   /**
@@ -28,8 +28,9 @@ public class DirectoryChooserManager {
    */
   public DirectoryChooserManager(String dirPath) {
     dc = new DirectoryChooser();
-    if (dirPath != null) dc.setInitialDirectory(new File(dirPath));
-    else dc.setInitialDirectory(new File("."));
+    File dir = new File(dirPath);
+    dir = dir.exists() && dir.isDirectory() ? dir : new File(".");
+    dc.setInitialDirectory(dir);
   }
 
   /**
