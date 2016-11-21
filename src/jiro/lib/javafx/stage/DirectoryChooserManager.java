@@ -49,4 +49,12 @@ public class DirectoryChooserManager {
     });
     return dirOpt;
   }
+
+  /**
+   * 開いたディレクトリを返す。
+   * @return 開いたディレクトリ
+   */
+  public File getDirectory() {
+    return dc.getInitialDirectory();
+  }
 }
